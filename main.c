@@ -6,7 +6,11 @@ Descrição:
 #include "Interface.h"
 
 int main(){
+	
+	setlocale(LC_ALL, "");
+	
 	janela_principal();
+	
 	return 0;
 }
 

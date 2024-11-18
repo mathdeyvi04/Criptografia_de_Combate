@@ -91,11 +91,15 @@ void cor(
 	/*
 	Descrição:
 		Função responsável por alterar as cores do prompt.
-	
+		Colocando 0, vamos ao padrão.
+		Colocando -1, nenhuma alteração será feita.
 	Parâmetros:
-		Autoexplicativos.
-		Colocando -1, nada acontece.
-		
+		int estilo:
+			[1, 7]
+		int texto:
+			[30, 37]
+		int fundo:
+			[40, 47]
 	Retorno:
 		Aplicação da cor.
 	*/

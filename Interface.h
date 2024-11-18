@@ -5,4 +5,6 @@
 
 void janela_principal();
 
+int* menu_principal();
+
 #endif
