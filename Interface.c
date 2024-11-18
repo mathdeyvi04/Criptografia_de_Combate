@@ -13,9 +13,17 @@ void janela_principal(){
 		Janela Principal em condições de ser usada.
 	*/
 	
+	String TITULO_DA_JANELA_PRINCIPAL = construir_string_estatica(
+		"IE COM ELT"
+	);
+	
 	while (1){
-		String arroz = {"MATH", 12};
-		cabecalho(arroz, '=');
+		
+		cabecalho(
+			TITULO_DA_JANELA_PRINCIPAL,
+			'=',
+			8
+		);
 		
 		int res = 0;
 		printf("Digite 0 para fechar: ");
