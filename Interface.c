@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "Interface.h"
 
 void janela_principal(){
@@ -15,6 +14,9 @@ void janela_principal(){
 	*/
 	
 	while (1){
+		String arroz = {"MATH", 12};
+		cabecalho(arroz, '=');
+		
 		int res = 0;
 		printf("Digite 0 para fechar: ");
 		scanf("%d", &res);

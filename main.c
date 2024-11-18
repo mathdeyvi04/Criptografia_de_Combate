@@ -1,6 +1,6 @@
 /*
 Descrição:
-	Código responsável por puxar a aplicação, exatamente
+	Código responsável por puxar a aplicação,
 	como um precursor. 
 */
 #include "Interface.h"
