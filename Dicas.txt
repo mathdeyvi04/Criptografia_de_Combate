@@ -1,0 +1,5 @@
+Para introduzir um novo arquivo de código:
+	-> Crie ele e seu .h;
+	-> Dentro do .c, importe o .h;
+	-> Dentro do .h, importe os outros códigos .h necessários;
+	-> Seja feliz no .c correspondente.
