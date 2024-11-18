@@ -83,4 +83,33 @@ void cabecalho(
 	free(QUANTIDADE_TOTAL_DE_CARACTERES_DE_APRESENTACAO);
 }
 
-
+void cor(
+	int estilo,
+	int texto,
+	int fundo
+){
+	/*
+	Descrição:
+		Função responsável por alterar as cores do prompt.
+	
+	Parâmetros:
+		Autoexplicativos.
+		Colocando -1, nada acontece.
+		
+	Retorno:
+		Aplicação da cor.
+	*/
+	
+	if (estilo != -1){
+		printf("\033[%dm", estilo);
+	}
+	
+	if (texto != -1){
+		printf("\033[%dm", texto);
+	}
+	
+	if (fundo != -1){
+		printf("\033[%dm", fundo);
+	}	
+	
+}

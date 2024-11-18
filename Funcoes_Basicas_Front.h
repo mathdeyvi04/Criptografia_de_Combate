@@ -5,4 +5,6 @@
 
 void cabecalho(String, char, int);
 
+void cor(int, int, int);
+
 #endif

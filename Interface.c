@@ -17,6 +17,7 @@ void janela_principal(){
 		"IE COM ELT"
 	);
 	
+	cor(-1, 30, 42);
 	while (1){
 		
 		cabecalho(
@@ -33,6 +34,7 @@ void janela_principal(){
 			break;
 		}
 	}
+	
 }
 
 
