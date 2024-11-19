@@ -16,6 +16,7 @@ int* menu_principal(){
 	printf("\n");
 	printf("1 - Cripto...\n");
 	printf("2 - Decripto...\n");
+	printf("\nEscolha sua opção: ");
 	
 	int *opcao_desejada = (int*)calloc(1, sizeof(int));
 	int *se_deu_certo = (int*)calloc(1, sizeof(int));
@@ -46,7 +47,7 @@ void janela_principal(){
 		Janela Principal em condições de ser usada.
 	*/
 	
-	String TITULO_DA_JANELA_PRINCIPAL = construir_string_estatica(
+	String *TITULO_DA_JANELA_PRINCIPAL = construir_string_dinamica(
 		"IE COM ELT"
 	);
 
@@ -55,10 +56,11 @@ void janela_principal(){
 		32,
 		-1
 	);
-	while (1){ 
+	while (1){
+		
 		
 		cabecalho(
-			TITULO_DA_JANELA_PRINCIPAL,
+			*TITULO_DA_JANELA_PRINCIPAL,
 			'=',
 			10
 		);
@@ -67,23 +69,24 @@ void janela_principal(){
 		
 		switch (*opcao_desejada){
 			case 1: 
-				// Cripto
-				break;
 			case 2:
-				// Decripto
+				// Vamos para a próxima janela
+				limpa_tela();
+				janela_de_entrada(
+					opcao_desejada
+				);
 				break;
-				
+			
+			case -1:
 			default:
-				printf("Opção inválida");
+				printf("Opção inválida\n\n");
 				break;
 		}
 		
 		free(opcao_desejada);
 	}
+	
+	free(TITULO_DA_JANELA_PRINCIPAL);
 }
-
-
-
-
 
 

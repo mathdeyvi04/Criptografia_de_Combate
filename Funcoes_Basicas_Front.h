@@ -7,4 +7,6 @@ void cabecalho(String, char, int);
 
 void cor(int, int, int);
 
+void limpa_tela();
+
 #endif

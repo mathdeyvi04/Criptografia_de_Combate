@@ -35,4 +35,37 @@ String construir_string_estatica(
 	return resultado;
 }
 
+String* construir_string_dinamica(
+	char* frase
+){
+	/*
+	Descrição:
+		Função responsável por criar string alocada dinamicamente.
+		
+	Parâmetros:
+		Autoexplicativo.
+		
+	Retorno:
+		Ponteiro para string formatada.
+	*/
+	
+	int *TAMANHO_DA_STRING = (int*)calloc(1, sizeof(int));
+	
+	while(
+		frase[*TAMANHO_DA_STRING] != '\0'
+	){
+		// printf("Vejo o elemento: %c\n", frase[*TAMANHO_DA_STRING]);
+		(*TAMANHO_DA_STRING)++;
+	}
+	
+	String *resultado = (String*) calloc(1, sizeof(String));
+	
+	(*resultado).array = frase;
+	(*resultado).len = *TAMANHO_DA_STRING;
+	
+	free(TAMANHO_DA_STRING);
+	
+	return resultado;
+	
+}
 

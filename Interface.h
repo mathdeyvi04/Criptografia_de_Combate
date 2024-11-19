@@ -1,7 +1,7 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include "Funcoes_Basicas_Front.h"
+#include "Interface_De_Entrada.h"
 
 void janela_principal();
 

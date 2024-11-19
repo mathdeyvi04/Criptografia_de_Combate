@@ -10,4 +10,6 @@ typedef struct {
 
 String construir_string_estatica(char*);
 
+String* construir_string_dinamica(char*);
+
 #endif

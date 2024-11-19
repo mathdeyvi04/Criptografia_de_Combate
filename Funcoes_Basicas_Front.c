@@ -117,3 +117,37 @@ void cor(
 	}	
 	
 }
+
+void limpa_tela(){
+	/*
+	Descrição:
+		Função responsável por limpar a tela pulando linhas
+		e posicionar o cursor no canto certo.
+	
+	Parâmetros:
+		Nenhum.
+		
+	Retorno:
+		Tela de Console em condições.
+	*/
+	
+	printf("\033[2J\033[H");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
