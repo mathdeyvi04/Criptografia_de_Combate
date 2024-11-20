@@ -182,9 +182,6 @@ int janela_de_entrada(
 					printf("\nErro na Entrada!");
 					free(string_de_entrada);
 				}else{
-					printf("\nVejo como entrada:\n%s", (*string_de_entrada).array);
-					printf("\nLen: %d\n", (*string_de_entrada).len);
-					
 					janela_de_decisao(
 						opcao_cripto_ou_decripto,
 						string_de_entrada
@@ -205,8 +202,6 @@ int janela_de_entrada(
 		
 		free(opcao_desejada);
 	}
-	
-	free(TITULO_DA_JANELA_DE_ENTRADA);
 }
 
 
