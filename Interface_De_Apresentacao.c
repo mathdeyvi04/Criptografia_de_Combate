@@ -38,7 +38,7 @@ int janela_de_apresentacao(
 		string_de_entrada
 	);
 	
-	printf("Vejo como saída: %s", (*resultado).array);
+	printf("\n\nVejo como saída: %s", (*resultado).array);
 	
 	// Devemos liberá-la aqui.
 	free((*resultado).array);

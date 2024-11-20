@@ -7,5 +7,4 @@
 #include <locale.h>
 
 
-
 #endif

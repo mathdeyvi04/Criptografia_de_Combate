@@ -61,6 +61,7 @@ int janela_de_decisao(
 	int *TOTAL_DE_METODOS_ATE_AGORA = (int*)calloc(1, sizeof(int));
 	*TOTAL_DE_METODOS_ATE_AGORA = 3;
 	
+	limpa_tela();
 	while(1){
 		cabecalho(
 			*TITULO_DA_JANELA_DE_DECISAO,
