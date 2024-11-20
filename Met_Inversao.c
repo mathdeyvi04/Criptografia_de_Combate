@@ -25,15 +25,21 @@ String* inversao(
 		sizeof(char)
 	);	
 	
-	// Lógica para Inversao
-
+	int *i = (int*) calloc(1, sizeof(int));
+	
+	while(
+		// Case fosse igual à 0, ele não pegaria o último elemento 
+		// da entrada, no caso o do index 0.
+		((*entrada).len - 1 - *i) != -1
+	){
+		frase[*i] = (*entrada).array[(*entrada).len - 1 - *i];
+		(*i)++;
+	}
+	
+	frase[*i + 1] = '\0';
+	
+	free(i);
 	(*resultado).array = frase;
 	return resultado;
 }
-
-
-
-
-
-
 

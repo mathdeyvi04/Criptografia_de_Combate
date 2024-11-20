@@ -5,4 +5,6 @@
 
 int janela_de_apresentacao(int*, String*, int*);
 
+int atualizar_historico(String*, String*);
+
 #endif

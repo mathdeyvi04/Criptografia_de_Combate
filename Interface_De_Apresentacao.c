@@ -1,6 +1,50 @@
 #include "Interface_De_Apresentacao.h"
 
 
+int atualizar_historico(
+	String *entrada,
+	String *resultado
+){
+	/*
+	Descrição:	
+		Função responsável por atualizar o fluxo
+		de entrada e saída do software.
+		
+	Parâmetros:
+		Autoexplicativo.
+	
+	Retorno:
+		Atualização.
+	*/
+	FILE *historico = fopen("historico.txt", "a");
+	
+	// Obtendo informações de tempo.
+	time_t tempo_atual;
+    struct tm *data_hora;
+
+    time(&tempo_atual);
+    data_hora = localtime(&tempo_atual);
+    
+    fprintf(
+		historico,
+		"Data: %02d/%02d/%d\n",
+		(*data_hora).tm_mday, (*data_hora).tm_mon + 1, (*data_hora).tm_year + 1900
+	);
+	fprintf(
+		historico,
+		"Hora: %02d:%02d:%02d\n",
+		(*data_hora).tm_hour, (*data_hora).tm_min, (*data_hora).tm_sec
+	);
+	fprintf(historico, "Entrada:\n");
+	fprintf(historico, (*entrada).array);
+	fprintf(historico, "\nFinal:\n");
+	fprintf(historico, (*resultado).array);
+	fprintf(historico, "\n\n");
+
+	fclose(historico);
+}
+
+
 int janela_de_apresentacao(
 	int *cripto_decripto,
 	String *string_de_entrada,
@@ -38,7 +82,13 @@ int janela_de_apresentacao(
 		string_de_entrada
 	);
 	
-	printf("\n\nVejo como saída: %s", (*resultado).array);
+	printf("\n\nVejo como saída: %s\n", (*resultado).array);
+	
+	// Devemos atualizar no histórico.
+	atualizar_historico(
+		string_de_entrada,
+		resultado
+	);
 	
 	// Devemos liberá-la aqui.
 	free((*resultado).array);
