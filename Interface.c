@@ -14,6 +14,7 @@ int* menu_principal(){
 	*/
 	
 	printf("\n");
+	printf("0 - Sair\n");
 	printf("1 - Cripto...\n");
 	printf("2 - Decripto...\n");
 	printf("\nEscolha sua opção: ");
@@ -34,7 +35,7 @@ int* menu_principal(){
 	return opcao_desejada;
 }
 
-void janela_principal(){
+int janela_principal(){
 	/*
 	Descrição:
 		Função responsável por gerenciar a janela principal.
@@ -68,6 +69,11 @@ void janela_principal(){
 		int *opcao_desejada = menu_principal();
 		
 		switch (*opcao_desejada){
+			case 0:
+				free(opcao_desejada);
+				free(TITULO_DA_JANELA_PRINCIPAL);
+				return 0;
+				
 			case 1: 
 			case 2:
 				// Vamos para a próxima janela

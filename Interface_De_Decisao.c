@@ -1,12 +1,9 @@
 #include "Interface_De_Decisao.h"
 
 
-
-
-
 int janela_de_decisao(
 	int* cripto_ou_decripto,
-	char* array_de_entrada
+	String* array_de_entrada
 ){
 	/*
 	Descrição:

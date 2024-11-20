@@ -69,3 +69,59 @@ String* construir_string_dinamica(
 	
 }
 
+char mudar_para_ascii(
+	char char_entrada
+){	
+	/*
+	Descrição:
+		Função responsável por receber caracteres que
+		possivelmente não são ascii e transformá-los para
+		ascii.
+		
+		Esta função não seria necessária para o caso de garantirmos
+		que não há caracteres especiais.
+	
+	Parâmetros:
+		char char_entrada:
+			Possível caractere não ascii.
+			
+	Retorno:
+		Caractere ascii.
+	*/
+	
+	switch (
+		char_entrada
+	){
+		case 'ç': return 'c';
+		
+		case 'á': return 'a';
+		
+		case 'é': case 'ê': return 'e';
+		
+		case 'í': return 'i';
+		
+		case 'ó': return 'o';
+		
+		case 'ú': return 'u';
+		
+		default:
+			return char_entrada;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

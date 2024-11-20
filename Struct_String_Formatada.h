@@ -12,4 +12,6 @@ String construir_string_estatica(char*);
 
 String* construir_string_dinamica(char*);
 
+char mudar_para_ascii(char);
+
 #endif

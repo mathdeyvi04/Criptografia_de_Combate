@@ -3,6 +3,6 @@
 
 #include "Funcoes_Basicas_Front.h"
 
-int janela_de_decisao(int*, char*);
+int janela_de_decisao(int*, String*);
 
 #endif

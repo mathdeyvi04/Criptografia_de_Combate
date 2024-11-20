@@ -3,7 +3,7 @@
 
 #include "Interface_De_Entrada.h"
 
-void janela_principal();
+int janela_principal();
 
 int* menu_principal();
 
