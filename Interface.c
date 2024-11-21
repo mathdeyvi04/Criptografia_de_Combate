@@ -19,20 +19,7 @@ int* menu_principal(){
 	printf("2 - Decripto...\n");
 	printf("\nEscolha sua opção: ");
 	
-	int *opcao_desejada = (int*)calloc(1, sizeof(int));
-	int *se_deu_certo = (int*)calloc(1, sizeof(int));
-	
-	*se_deu_certo = scanf("%d", opcao_desejada);
-	getchar();
-	
-	if (
-		!(*se_deu_certo)
-	){
-		*opcao_desejada = -1;
-	}
-	
-	free(se_deu_certo);
-	return opcao_desejada;
+	return verificador_primario(0);
 }
 
 int janela_principal(){
@@ -83,7 +70,6 @@ int janela_principal(){
 				);
 				break;
 			
-			case -1:
 			default:
 				printf("Opção inválida\n\n");
 				break;

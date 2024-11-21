@@ -21,20 +21,8 @@ int* menu_de_decisao(){
 	printf("3 - Quadros");
 	
 	printf("\nEscolha o método desejado: ");
-	int *opcao_desejada = (int*)calloc(1, sizeof(int));
-	int *se_deu_certo = (int*)calloc(1, sizeof(int));
 	
-	*se_deu_certo = scanf("%d", opcao_desejada);
-	getchar();
-	
-	if (
-		!(*se_deu_certo)
-	){
-		*opcao_desejada = -1;
-	}
-	
-	free(se_deu_certo);
-	return opcao_desejada;
+	return verificador_primario(0);
 }
 
 

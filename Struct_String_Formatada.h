@@ -14,4 +14,10 @@ String* construir_string_dinamica(char*);
 
 char mudar_para_ascii(char);
 
+char maiusculando(char);
+
+int* obtendo_indicadores();
+
+int* verificador_primario();
+
 #endif

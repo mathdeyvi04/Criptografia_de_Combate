@@ -20,20 +20,7 @@ int* menu_de_entradas(){
 	printf("2 - Arquivo .txt\n");
 	printf("\nEscolha sua opção: ");
 	
-	int *opcao_desejada = (int*)calloc(1, sizeof(int));
-	int *se_deu_certo = (int*)calloc(1, sizeof(int));
-	
-	*se_deu_certo = scanf("%d", opcao_desejada);
-	getchar();
-	
-	if (
-		!(*se_deu_certo)
-	){
-		*opcao_desejada = -1;
-	}
-	
-	free(se_deu_certo);
-	return opcao_desejada;
+	return verificador_primario(0);
 }
 
 
@@ -68,6 +55,16 @@ String* obtendo_entrada(
 	while (1){
 		
 		*caract_temp = getchar();
+		
+		if(
+			tipo_de_entrada == 1
+		){
+			// Sabemos que será uma frase, então devemos alterar
+			// para maiusculo aqui.
+			
+			*caract_temp = maiusculando(*caract_temp);
+			
+		}
 		
 		if(
 			*caract_temp == '\n'
@@ -114,7 +111,7 @@ String* obtendo_entrada(
 					break;
 				}
 				
-				frase_entrada[*indice] = mudar_para_ascii(*caract_temp);
+				frase_entrada[*indice] = maiusculando(mudar_para_ascii(*caract_temp));
 				(*indice)++;
 				
 				frase_entrada = (char*)realloc(frase_entrada, ((*indice) + 1) * sizeof(char));			

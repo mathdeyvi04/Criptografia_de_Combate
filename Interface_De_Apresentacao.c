@@ -70,10 +70,18 @@ int janela_de_apresentacao(
 		entrada usando o método.
 	*/
 	
-	String* (*vetor_de_metodos_possiveis[1])(int, String*) = {
+	String* (*vetor_de_metodos_possiveis[2])(int, String*) = {
+		inversao,
 		inversao
 	};
 	
+	// Vamos pegar indicadores de processo
+	int *indicadores_de_processo = NULL;
+	if (
+		*metodo_escolhido != 1
+	){
+		indicadores_de_processo = obtendo_indicadores();
+	}
 	
 	String *resultado = vetor_de_metodos_possiveis[
 		*metodo_escolhido - 1
@@ -81,6 +89,12 @@ int janela_de_apresentacao(
 		*cripto_decripto,
 		string_de_entrada
 	);
+	
+	// Devemos inserir os indicadores de processo.
+	
+	
+	
+	
 	
 	printf("\n\nVejo como saída: %s\n", (*resultado).array);
 	
@@ -90,7 +104,8 @@ int janela_de_apresentacao(
 		resultado
 	);
 	
-	// Devemos liberá-la aqui.
+	// Devemos liberá-los aqui.
+	free(indicadores_de_processo);
 	free((*resultado).array);
 	free(resultado);
 	return 0;

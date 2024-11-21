@@ -1,0 +1,63 @@
+Data: 20/11/2024
+Hora: 20:28:37
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 20:52:06
+Entrada:
+ADS
+Final:
+SDA
+
+Data: 20/11/2024
+Hora: 20:53:50
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 20:54:18
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 21:06:56
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 21:20:11
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 21:22:39
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 21:44:34
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 20/11/2024
+Hora: 21:45:21
+Entrada:
+ADS
+Final:
+SDA
+

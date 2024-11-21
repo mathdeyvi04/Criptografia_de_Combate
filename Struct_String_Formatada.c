@@ -110,11 +110,147 @@ char mudar_para_ascii(
 }
 
 
+char maiusculando(
+	char caract_possivelmente_minusculo
+){
+	/*
+	Descrição:
+		Função responsável por transformar as letras
+		para maiusculo.
+		
+		Isso é necessário devido aos métodos de substituição, 
+		os quais utilizam fortemente meios de comparação.
+		
+	Parâmetros:
+		Autoexplicativos.
+		
+	Retorno:
+		Mesmo caractere ou ele maiusculo.
+	*/
+	
+	if (
+		(caract_possivelmente_minusculo >= 97) && (caract_possivelmente_minusculo <= 122)
+	){
+		return caract_possivelmente_minusculo - 32;
+	}
+	
+}
 
 
+int* obtendo_indicadores(){
+	/*
+	Descrição:
+		Função responsável por obter os indicadores de processo
+		desejados pelo usuário e sua respectiva localização.
+		
+	Parâmetros:
+		Nenhum.
+		
+	Retorno:
+		Array = [i_1, c_1, l_1, ...]
+		
+		Constituindo triplas, as quais representam:
+		i_1: 
+			caractere indicador.
+			
+		c_1: 
+			coluna do indicador.
+			
+		l_1:
+			linha do indicador.
+	*/
+	
+	// Como são sempre dois
+	int *indicadores = (int*)calloc(6, sizeof(int));
+	
+	printf("\nIndicadores de Processo!");
+	printf("\nInfo:");
+	printf("\n1 -> 1° Grupo");
+	printf("\n2 -> 2° Grupo");
+	printf("\n...");
+	printf("\n-2 -> Penúltimo Grupo");
+	printf("\n-1 -> Último Grupo\n");
+	
+	for(
+		int i = 1;
+		i != 3;
+		i++
+	){
+		// Pegando Indicador
+		{
+			while(1){
+				printf("\nInforme o %d° indicador: ", i);
+				int *temp = verificador_primario(1);
+				
+				if (
+					(
+						(*temp >= 65) && (*temp <= 90)
+					) || (
+						(*temp >= 97) && (*temp <= 122)
+					)
+				){
+					indicadores[i - 1] = *temp;
+					free(temp);
+					break;
+				}
+				
+				printf("\nOpção Inválida.");
+				free(temp);				
+			}
+			
+		}
+		
+		break;
+	}
+	
+	
+	return indicadores;
+}
 
 
-
+int* verificador_primario(
+	int tipo_esperado
+){
+	/*
+	Descrição:
+		Função responsável por receber entrada numérica do 
+		usuário. Verificando se ela foi realizada da forma
+		correta.
+	
+	Parâmetros:
+		int tipo_esperado:
+			0 -> int
+			1 -> char
+	
+	Retorno:
+		Número de entrada do usuário.
+	*/
+	
+	int *opcao_desejada = (int*)calloc(1, sizeof(int));
+	int *se_deu_certo = (int*)calloc(1, sizeof(int));
+	
+	while(1){
+		
+		if (
+			tipo_esperado
+		){
+			*se_deu_certo = scanf("%c", opcao_desejada);
+		}else{
+			*se_deu_certo = scanf("%d", opcao_desejada);
+		}
+		getchar();
+		
+		if (
+			!(*se_deu_certo)
+		){
+			printf("\nOpção Inválida.");
+			printf("\nDigite novamente: ");
+		}else{
+			free(se_deu_certo);
+			return opcao_desejada;
+		}
+	}
+}
 
 
 
