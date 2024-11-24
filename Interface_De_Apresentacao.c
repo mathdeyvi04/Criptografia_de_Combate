@@ -69,32 +69,27 @@ int janela_de_apresentacao(
 		Apresentação do resultado da cripto ou decripto da
 		entrada usando o método.
 	*/
-	
-	String* (*vetor_de_metodos_possiveis[2])(int, String*) = {
+	String* (*vetor_de_metodos_possiveis[2])(int, String*, int*) = {
 		inversao,
-		inversao
+		gradiando
 	};
 	
 	// Vamos pegar indicadores de processo
-	int *indicadores_de_processo = NULL;
+	int *indicadores_de_processo = (int*)calloc(1, sizeof(int));
+	indicadores_de_processo = NULL;
 	if (
 		*metodo_escolhido != 1
 	){
-		indicadores_de_processo = obtendo_indicadores();
+		indicadores_de_processo = obtendo_indicadores(verificando_letras_mortas(string_de_entrada));
 	}
-	
+
 	String *resultado = vetor_de_metodos_possiveis[
 		*metodo_escolhido - 1
 	](
 		*cripto_decripto,
-		string_de_entrada
+		string_de_entrada,
+		indicadores_de_processo
 	);
-	
-	// Devemos inserir os indicadores de processo.
-	
-	
-	
-	
 	
 	printf("\n\nVejo como saída: %s\n", (*resultado).array);
 	

@@ -16,8 +16,10 @@ char mudar_para_ascii(char);
 
 char maiusculando(char);
 
-int* obtendo_indicadores();
+int* obtendo_indicadores(int);
 
 int* verificador_primario();
+
+int verificando_letras_mortas(String*);
 
 #endif

@@ -24,12 +24,12 @@ HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
 CommandLine=
-Folders=BackEnd,BackEnd/A_Inversao,BackEnd/StructStringFormatada,BackEnd/VariaveisImportacoes,FrontEnd,FrontEnd/FuncoesBasicasFront,FrontEnd/InterfaceDeApresentacao,FrontEnd/InterfaceDeDecisao,FrontEnd/InterfaceDeEntrada,FrontEnd/InterfacePrincipal
+Folders=BackEnd,BackEnd/A_Inversao,BackEnd/B_Grades,BackEnd/StructStringFormatada,BackEnd/VariaveisImportacoes,FrontEnd,FrontEnd/FuncoesBasicasFront,FrontEnd/InterfaceDeApresentacao,FrontEnd/InterfaceDeDecisao,FrontEnd/InterfaceDeEntrada,FrontEnd/InterfacePrincipal
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=17
+UnitCount=19
 
 [VersionInfo]
 Major=1
@@ -214,6 +214,25 @@ BuildCmd=
 FileName=Met_Inversao.h
 CompileCpp=0
 Folder=BackEnd/A_Inversao
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit18]
+FileName=Met_Grades.c
+CompileCpp=0
+Folder=BackEnd/B_Grades
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit19]
+FileName=Sem Título3
+Folder=BackEnd/B_Grades
 Compile=1
 Link=1
 Priority=1000

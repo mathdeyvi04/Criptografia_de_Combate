@@ -2,7 +2,8 @@
 
 String* inversao(
 	int cripto_decripto,
-	String *entrada
+	String *entrada,
+	int *indicadores
 ){
 	/*
 	Descrição:

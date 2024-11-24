@@ -178,6 +178,7 @@ int janela_de_entrada(
 				){
 					printf("\nErro na Entrada!");
 					free(string_de_entrada);
+					
 				}else{
 					janela_de_decisao(
 						opcao_cripto_ou_decripto,
@@ -187,7 +188,6 @@ int janela_de_entrada(
 					free((*string_de_entrada).array);
 					free(string_de_entrada);
 				}
-				
 				break;
 			}
 

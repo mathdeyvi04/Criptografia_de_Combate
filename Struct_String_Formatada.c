@@ -137,7 +137,9 @@ char maiusculando(
 }
 
 
-int* obtendo_indicadores(){
+int* obtendo_indicadores(
+	int quantidade_de_grupos
+){
 	/*
 	Descrição:
 		Função responsável por obter os indicadores de processo
@@ -164,22 +166,18 @@ int* obtendo_indicadores(){
 	int *indicadores = (int*)calloc(6, sizeof(int));
 	
 	printf("\nIndicadores de Processo!");
-	printf("\nInfo:");
-	printf("\n1 -> 1° Grupo");
-	printf("\n2 -> 2° Grupo");
-	printf("\n...");
-	printf("\n-2 -> Penúltimo Grupo");
-	printf("\n-1 -> Último Grupo\n");
 	
+	int *numero = (int*)calloc(1, sizeof(int));
+	*numero = 1;
 	for(
-		int i = 1;
-		i != 3;
-		i++
+		int i = 0;
+		i <= 3;
+		i = i + 3
 	){
 		// Pegando Indicador
 		{
 			while(1){
-				printf("\nInforme o %d° indicador: ", i);
+				printf("\nInforme o %d° indicador: ", *numero);
 				int *temp = verificador_primario(1);
 				
 				if (
@@ -189,7 +187,7 @@ int* obtendo_indicadores(){
 						(*temp >= 97) && (*temp <= 122)
 					)
 				){
-					indicadores[i - 1] = *temp;
+					indicadores[i] = *temp;
 					free(temp);
 					break;
 				}
@@ -197,12 +195,50 @@ int* obtendo_indicadores(){
 				printf("\nOpção Inválida.");
 				free(temp);				
 			}
-			
 		}
 		
-		break;
+		// Pegando Coluna do Indicador
+		{
+			while(1){
+				printf("\nInforme a posição do indicador no grupo: ");
+				int *temp = verificador_primario(0);
+				
+				if (
+					(*temp >= 1) && (*temp <= 5) 
+				){
+					indicadores[i + 1] = *temp;
+					free(temp);
+					break;
+				}
+				
+				printf("\nOpção Inválida.");
+				free(temp);				
+			}
+		}
+		
+		// Pegando o Grupo do Indicador
+		{
+			while(1){
+				printf("\nInforme o grupo do indicador: ");
+				int *temp = verificador_primario(0);
+				
+				if (
+					(*temp >= 1) && (*temp <= quantidade_de_grupos) 
+				){
+					indicadores[i + 2] = *temp;
+					free(temp);
+					break;
+				}
+				
+				printf("\nOpção Inválida.");
+				free(temp);				
+			}
+		}
+		
+		(*numero)++;
 	}
 	
+	free(numero);
 	
 	return indicadores;
 }
@@ -253,11 +289,47 @@ int* verificador_primario(
 }
 
 
-
-
-
-
-
-
+int verificando_letras_mortas(
+	String *entrada
+){
+	/*
+	Descrição:
+		Função responsável por verificar quantidade
+		de caracteres e tomar as providencias necessárias
+		para a quantidade de grupos.
+	
+	Parâmetros:
+		Entrada a ser verificada.
+		
+	Retorno:
+		Quantidade de Grupos Final.
+	*/
+	
+	
+	while (
+		(*entrada).len % 5 != 3
+	){
+		// Vamos preencher com letras mortas
+		
+		(*entrada).array = (char*)realloc(
+			(*entrada).array,
+			((*entrada).len + 1) * sizeof(char)	
+		);
+		
+		(*entrada).array[(*entrada).len] = 'X';
+		
+		(*entrada).len = (*entrada).len + 1;
+		
+	}
+	(*entrada).array = (char*)realloc(
+		(*entrada).array,
+		((*entrada).len + 1) * sizeof(char)	
+	);
+	
+	(*entrada).array[(*entrada).len] = '\0';
+	
+	
+	return ((*entrada).len + 2) / 5;
+}
 
 

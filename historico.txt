@@ -1,63 +1,112 @@
-Data: 20/11/2024
-Hora: 20:28:37
+Data: 24/11/2024
+Hora: 13:40:24
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:41:02
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:46:53
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:48:04
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:48:38
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:48:41
 Entrada:
 ASD
 Final:
 DSA
 
-Data: 20/11/2024
-Hora: 20:52:06
+Data: 24/11/2024
+Hora: 13:49:31
 Entrada:
-ADS
+ASD
 Final:
-SDA
+ASD
 
-Data: 20/11/2024
-Hora: 20:53:50
+Data: 24/11/2024
+Hora: 13:51:45
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:52:17
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 13:53:54
+Entrada:
+ASX
+Final:
+ASX
+
+Data: 24/11/2024
+Hora: 13:54:50
 Entrada:
 ASD
 Final:
 DSA
 
-Data: 20/11/2024
-Hora: 20:54:18
+Data: 24/11/2024
+Hora: 13:57:56
+Entrada:
+ASD
+Final:
+ASD
+
+Data: 24/11/2024
+Hora: 14:00:10
 Entrada:
 ASD
 Final:
 DSA
 
-Data: 20/11/2024
-Hora: 21:06:56
+Data: 24/11/2024
+Hora: 14:00:12
 Entrada:
 ASD
 Final:
 DSA
 
-Data: 20/11/2024
-Hora: 21:20:11
+Data: 24/11/2024
+Hora: 14:00:13
 Entrada:
 ASD
 Final:
 DSA
 
-Data: 20/11/2024
-Hora: 21:22:39
+Data: 24/11/2024
+Hora: 14:02:42
 Entrada:
 ASD
 Final:
-DSA
-
-Data: 20/11/2024
-Hora: 21:44:34
-Entrada:
 ASD
-Final:
-DSA
-
-Data: 20/11/2024
-Hora: 21:45:21
-Entrada:
-ADS
-Final:
-SDA
 
