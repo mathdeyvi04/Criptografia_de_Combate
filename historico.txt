@@ -1,112 +1,49 @@
 Data: 24/11/2024
-Hora: 13:40:24
-Entrada:
-ASD
-Final:
-ASD
-
-Data: 24/11/2024
-Hora: 13:41:02
-Entrada:
-ASD
-Final:
-ASD
-
-Data: 24/11/2024
-Hora: 13:46:53
-Entrada:
-ASD
-Final:
-ASD
-
-Data: 24/11/2024
-Hora: 13:48:04
-Entrada:
-ASD
-Final:
-ASD
-
-Data: 24/11/2024
-Hora: 13:48:38
-Entrada:
-ASD
-Final:
-ASD
-
-Data: 24/11/2024
-Hora: 13:48:41
+Hora: 16:35:48
 Entrada:
 ASD
 Final:
 DSA
 
 Data: 24/11/2024
-Hora: 13:49:31
+Hora: 16:37:19
 Entrada:
 ASD
 Final:
-ASD
+
 
 Data: 24/11/2024
-Hora: 13:51:45
+Hora: 16:41:16
 Entrada:
 ASD
 Final:
-ASD
+
 
 Data: 24/11/2024
-Hora: 13:52:17
+Hora: 16:52:01
 Entrada:
 ASD
 Final:
-ASD
+
 
 Data: 24/11/2024
-Hora: 13:53:54
+Hora: 17:09:22
 Entrada:
-ASX
+INFATQPCPENCERRXXX
 Final:
-ASX
+
 
 Data: 24/11/2024
-Hora: 13:54:50
+Hora: 17:26:37
 Entrada:
-ASD
+INFATQPCPENCERRADO
 Final:
-DSA
+
 
 Data: 24/11/2024
-Hora: 13:57:56
+Hora: 18:27:55
 Entrada:
-ASD
+SDFKDNJFNDJSE
 Final:
-ASD
 
-Data: 24/11/2024
-Hora: 14:00:10
-Entrada:
-ASD
-Final:
-DSA
-
-Data: 24/11/2024
-Hora: 14:00:12
-Entrada:
-ASD
-Final:
-DSA
-
-Data: 24/11/2024
-Hora: 14:00:13
-Entrada:
-ASD
-Final:
-DSA
-
-Data: 24/11/2024
-Hora: 14:02:42
-Entrada:
-ASD
-Final:
-ASD
 
