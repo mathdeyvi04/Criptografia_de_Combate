@@ -47,3 +47,17 @@ SDFKDNJFNDJSE
 Final:
 
 
+Data: 26/11/2024
+Hora: 18:54:23
+Entrada:
+ASD
+Final:
+DSA
+
+Data: 26/11/2024
+Hora: 19:34:17
+Entrada:
+INFATQPCPENCERRADO
+Final:
+
+

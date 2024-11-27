@@ -102,7 +102,7 @@ int janela_de_apresentacao(
 	// Devemos liberá-los aqui.
 	free(indicadores_de_processo);
 	free((*resultado).array);
-	free(resultado);
+	free(resultado);	
 	return 0;
 }
 

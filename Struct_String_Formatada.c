@@ -149,7 +149,7 @@ int* obtendo_indicadores(
 		Nenhum.
 		
 	Retorno:
-		Array = [i_1, c_1, l_1, ...]
+		Array = [i_1, c_1, g_1, ...]
 		
 		Constituindo triplas, as quais representam:
 		i_1: 
@@ -158,8 +158,8 @@ int* obtendo_indicadores(
 		c_1: 
 			coluna do indicador.
 			
-		l_1:
-			linha do indicador.
+		g_1:
+			grupo do indicador.
 	*/
 	
 	// Como são sempre dois
@@ -211,7 +211,7 @@ int* obtendo_indicadores(
 					break;
 				}
 				
-				printf("\nOpção Inválida.");
+				printf("\n Inválido, deve estar entre 1° e 5°.");
 				free(temp);				
 			}
 		}
@@ -230,11 +230,10 @@ int* obtendo_indicadores(
 					break;
 				}
 				
-				printf("\nOpção Inválida.");
+				printf("\nInválido, não há essa quantidade de grupos.");
 				free(temp);				
 			}
 		}
-		
 		(*numero)++;
 	}
 	
