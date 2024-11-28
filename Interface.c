@@ -37,7 +37,7 @@ int janela_principal(){
 	
 	String *TITULO_DA_JANELA_PRINCIPAL = construir_string_dinamica(
 		"IE COM ELT"
-	);
+	);  // 
 
 	cor(
 		1,
@@ -53,12 +53,12 @@ int janela_principal(){
 			10
 		);
 		
-		int *opcao_desejada = menu_principal();
+		int *opcao_desejada = menu_principal();  //
 		
 		switch (*opcao_desejada){
 			case 0:
-				free(opcao_desejada);
-				free(TITULO_DA_JANELA_PRINCIPAL);
+				free(opcao_desejada); 
+				free(TITULO_DA_JANELA_PRINCIPAL);  
 				return 0;
 				
 			case 1: 
@@ -75,10 +75,10 @@ int janela_principal(){
 				break;
 		}
 		
-		free(opcao_desejada);
+		free(opcao_desejada);  
 	}
 	
-	free(TITULO_DA_JANELA_PRINCIPAL);
+	free(TITULO_DA_JANELA_PRINCIPAL); 
 }
 
 

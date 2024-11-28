@@ -91,6 +91,7 @@ int janela_de_apresentacao(
 		indicadores_de_processo
 	);
 	
+	// INFATQPCPENCERRADOQUATORZEZEROZEROPTXW
 	printf("\n\nVejo como saída: %s\n", (*resultado).array);
 	
 	// Devemos atualizar no histórico.

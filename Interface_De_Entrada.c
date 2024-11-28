@@ -48,7 +48,7 @@ String* obtendo_entrada(
 		printf("\nEntre com o caminho do arquivo.txt: ");
 	}
 	
-	char *frase_entrada = (char*)calloc(1, sizeof(char));
+	char *frase_entrada = (char*)calloc(1, sizeof(char));  
 	char *caract_temp = (char*)calloc(1, sizeof(char));
 	int *indice = (int*) calloc(1, sizeof(char));
 		
@@ -93,7 +93,7 @@ String* obtendo_entrada(
 		if (arquivo == NULL){
 			printf("\nNão existe nada no caminho: %s", frase_entrada);
 			
-			free(frase_entrada);		
+			free(frase_entrada);  		
 		}else{
 			// De posse do arquivo, devemos alterar a frase_de_entrada.
 			// Para não termos vazamento de memória.

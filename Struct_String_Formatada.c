@@ -16,7 +16,7 @@ String construir_string_estatica(
 		Objeto String de tamanho definido.
 	*/
 	
-	int *TAMANHO_DA_STRING = (int*)calloc(1, sizeof(int));
+	int *TAMANHO_DA_STRING = (int*)calloc(1, sizeof(int));  // 33 
 	
 	while(
 		frase[*TAMANHO_DA_STRING] != '\0'
@@ -30,7 +30,7 @@ String construir_string_estatica(
 		*TAMANHO_DA_STRING
 	};
 	
-	free(TAMANHO_DA_STRING);
+	free(TAMANHO_DA_STRING);  // 19
 	
 	return resultado;
 }
@@ -49,7 +49,7 @@ String* construir_string_dinamica(
 		Ponteiro para string formatada.
 	*/
 	
-	int *TAMANHO_DA_STRING = (int*)calloc(1, sizeof(int));
+	int *TAMANHO_DA_STRING = (int*)calloc(1, sizeof(int));  
 	
 	while(
 		frase[*TAMANHO_DA_STRING] != '\0'
@@ -63,7 +63,7 @@ String* construir_string_dinamica(
 	(*resultado).array = frase;
 	(*resultado).len = *TAMANHO_DA_STRING;
 	
-	free(TAMANHO_DA_STRING);
+	free(TAMANHO_DA_STRING); 
 	
 	return resultado;
 	
@@ -219,7 +219,7 @@ int* obtendo_indicadores(
 		// Pegando o Grupo do Indicador
 		{
 			while(1){
-				printf("\nInforme o grupo do indicador: ");
+				printf("\nInforme o grupo do indicador(Total = %d): ", quantidade_de_grupos);
 				int *temp = verificador_primario(0);
 				
 				if (
@@ -258,11 +258,11 @@ int* verificador_primario(
 			1 -> char
 	
 	Retorno:
-		Número de entrada do usuário.
+		Número de entrada do usuário, como ponteiro alocado.
 	*/
 	
 	int *opcao_desejada = (int*)calloc(1, sizeof(int));
-	int *se_deu_certo = (int*)calloc(1, sizeof(int));
+	int *se_deu_certo = (int*)calloc(1, sizeof(int));  // 284
 	
 	while(1){
 		
@@ -281,7 +281,7 @@ int* verificador_primario(
 			printf("\nOpção Inválida.");
 			printf("\nDigite novamente: ");
 		}else{
-			free(se_deu_certo);
+			free(se_deu_certo);  // 265
 			return opcao_desejada;
 		}
 	}

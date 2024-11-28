@@ -48,7 +48,7 @@ String* gradiando(
 		){
 			
 			if (
-				GRADE[*index_linear]
+				GRADE[(*index_linear) % 30]
 			){
 				
 				grade_linear[*index_linear] = (*entrada).array[*index];
@@ -133,20 +133,22 @@ String* gradiando(
 				(
 					// Verificamos se está no mesmo grupo do indicador.
 					(
-						*index_resultado >= (5 * (indicadores[*index_indicador + 2] - 1))
+						*index_resultado >= (5 * (indicadores[(*index_indicador + 2) % 6] - 1))
 					) && (
-						*index_resultado <= ((5 * indicadores[*index_indicador + 2] - 1))
+						*index_resultado <= ((5 * indicadores[(*index_indicador + 2) % 6] - 1))
 					)
 									
 				) && (
 					// Verificamos se está na mesma coluna do indicador.
-					((*index_resultado % 5) + 1) == indicadores[*index_indicador + 1]					
+					((*index_resultado % 5) + 1) == indicadores[(*index_indicador + 1) % 6]					
 				)
 				
 			){
 				// Colocar indicador na frase.
+				frase[*index_resultado] = indicadores[*index_indicador % 6];
 				
-				(*index_indicador)++;
+				*index_indicador = *index_indicador + 3;
+				(*index_resultado)++;
 			}else{
 				// Caso não seja indicador, podemos prosseguir.
 				if(
@@ -166,16 +168,13 @@ String* gradiando(
 			}
 		}
 		
-		
-		
-		
-		
-		
+		frase[*index_resultado] = '\0';
+		(*resultado).array = frase;
+		(*resultado).len = *index_resultado;		
 		
 		// Como ela se tornou inutil
 		free((*string_grade).array);
 		free(string_grade);
-		free(frase);  // Devemos retirar.
 		free(index_resultado);
 		free(index_grade);
 		free(index_indicador);

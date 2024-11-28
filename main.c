@@ -10,7 +10,7 @@ int main(){
 	
 	// Garantir existência do histórico
 	{
-		FILE *historico = fopen("historico.txt", "r");
+		FILE *historico = fopen("historico.txt", "r"); 
 		
 		if (
 			historico == NULL
