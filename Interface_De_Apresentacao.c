@@ -92,6 +92,7 @@ int janela_de_apresentacao(
 	);
 	
 	// INFATQPCPENCERRADOQUATORZEZEROZEROPTXW
+	
 	printf("\n\nVejo como saída: %s\n", (*resultado).array);
 	
 	// Devemos atualizar no histórico.

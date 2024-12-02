@@ -40,7 +40,8 @@ String* construir_string_dinamica(
 ){
 	/*
 	Descrição:
-		Função responsável por criar string alocada dinamicamente.
+		Função responsável por criar string alocada.
+		Não possuindo, necessariamente a frase alocada.
 		
 	Parâmetros:
 		Autoexplicativo.
@@ -109,7 +110,6 @@ char mudar_para_ascii(
 	}
 }
 
-
 char maiusculando(
 	char caract_possivelmente_minusculo
 ){
@@ -135,7 +135,6 @@ char maiusculando(
 	}
 	
 }
-
 
 int* obtendo_indicadores(
 	int quantidade_de_grupos

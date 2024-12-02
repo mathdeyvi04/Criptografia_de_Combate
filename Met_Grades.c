@@ -1,6 +1,31 @@
 #include "Met_Grades.h"
 
 
+
+
+// Funções de Cripto
+
+String* colocando_entrada_na_grade(
+	int *GRADE_EMBARALHADORA,
+	String *entrada_usuario,
+	char *ELEMENTO_DO_VAZIO
+);
+
+
+int verificando_se_estamos_em_posicao_de(
+	int *index_de_indicadores,
+	int *indicadores,
+	int *index_da_frase_final
+);
+
+String* criando_string_criptografada(
+	String *entrada_embaralhada_pela_grade,
+	int *indicadores,
+	char *ELEMENTO_DO_VAZIO
+);
+
+
+// Função Principal
 String* gradiando(
 	int cripto_decripto,
 	String* entrada,
@@ -18,168 +43,7 @@ String* gradiando(
 		String cripto ou decriptografada.
 	*/
 	
-	// Lógica de quantidade de caracteres.
-	
-	String* colocando_na_grade(
-		int *GRADE,
-		String *entrada,
-		char *ELEMENTO_DO_VAZIO
-	){
-		/*
-		Descrição:
-			Função( CRIPTO ) responsável por inserir a string de entrada dentro
-			da grade linear.
-		*/	
-		
-		char *grade_linear = (char*)calloc(1, sizeof(char));
-		int *index_linear = (int*)calloc(1, sizeof(int));  // para percorrer as grades
-		
-		/*
-		Precisamos percorrer a string, de modo a encerrar 
-		quando não houver mais caracteres a serem lidos.
-		
-		// INFATQPCPENCERRADO
-		// I+NFA+TQPC+P+E+N+C+ER+R+ADO
-		
-		*/
-		int *index = (int*)calloc(1, sizeof(int));  // para percorrer a string
-		while(
-			*index != (*entrada).len
-		){
-			
-			if (
-				GRADE[(*index_linear) % 30]
-			){
-				
-				grade_linear[*index_linear] = (*entrada).array[*index];
-				(*index)++;
-				
-			}else{
-				// Algum caractere para ser o vazio.
-				grade_linear[*index_linear] = *ELEMENTO_DO_VAZIO;
-					
-			}
-			(*index_linear)++;
-			
-			// Vamos alocar mais memória.
-			grade_linear = (char*)realloc(grade_linear, (*index_linear + 1) * sizeof(char));
-			
-		}
-		free(index);
-		
-		String* entrada_na_grade = (String*)calloc(1, sizeof(String));
-		(*entrada_na_grade).array = grade_linear;
-		(*entrada_na_grade).len = *index_linear;		
-		free(index_linear);
-		
-		// Não devemos limpar grade_linear já que estamos usando-a.
-		return entrada_na_grade;
-	}
-	
-	String* criando_string_final(
-		String *string_grade,
-		int *indicadores,
-		char *ELEMENTO_DO_VAZIO
-	){
-		/*
-		Descrição:
-			Função( CRIPTO ) responsável por, a partir da string na grade,
-			ser capazes de fazer as verificações necessárias para pegar 
-			a string final.
-		*/
-		
-		String *resultado = (String*)calloc(1, sizeof(String));
-		// I+NFA+TQPC+P+E+N+C+ER+R+ADO
-		
-		char *frase = (char*)calloc((*entrada).len + 2, sizeof(char));  // Já sabemos que a quantidade total de caracteres.
-		int *index_resultado = (int*)calloc(1, sizeof(int)); // Para percorrer string final.
-		int *index_grade = (int*)calloc(1,sizeof(int));  // Para percorrer string que está grade.
-		
-		/*
-		Desenvolvimento de lógica de preenchimento dos grupos
-		Não esquecer indicadores de processo.
-		
-		- Vamos precisar varrer a string da grade pelas colunas.
-		Suponhndo que tenha 3 linhas e 10 colunas, o index no vetor
-		da string deve seguir: 0, 10, 20, 1, 11, 21, ... .
-		
-			- Para o limite, devemos pensar na quantidade de caracteres
-			que serão lidos, pois em teoria deve ir somente até onde há
-			caracteres. 
-			
-			- Note que, como não há uma lógica na grade, por segurança, 
-			então não temos escolha a não ser varrer por todos.
-		
-		- Além disso, devemos verificar se o elemento na string grade
-		é válido, isto é, diferente do elemento vazio.
-		
-		- Além disso, devemos verificar se as posições não são dos 
-		indicadores de processo. 
-		
-			- Basta que façamos index_indicador = 0, 3. Acessamos
-			os outros elementos apenas somando 1 e 2.
-			
-			- Podemos contar qual o grupo que estamos a partir de:
-			
-		*/
-		
-		int *index_indicador = (int*)calloc(1, sizeof(int));
-		while(
-			*index_grade <= (*string_grade).len
-		){
-			
-			if(
-				// Caso seja um local dos indicadores.
-				(
-					// Verificamos se está no mesmo grupo do indicador.
-					(
-						*index_resultado >= (5 * (indicadores[(*index_indicador + 2) % 6] - 1))
-					) && (
-						*index_resultado <= ((5 * indicadores[(*index_indicador + 2) % 6] - 1))
-					)
-									
-				) && (
-					// Verificamos se está na mesma coluna do indicador.
-					((*index_resultado % 5) + 1) == indicadores[(*index_indicador + 1) % 6]					
-				)
-				
-			){
-				// Colocar indicador na frase.
-				frase[*index_resultado] = indicadores[*index_indicador % 6];
-				
-				*index_indicador = *index_indicador + 3;
-				(*index_resultado)++;
-			}else{
-				// Caso não seja indicador, podemos prosseguir.
-				if(
-					(*string_grade).array[*index_grade] != *ELEMENTO_DO_VAZIO
-				){
-					
-					frase[*index_resultado] = (*string_grade).array[*index_grade];
-					(*index_resultado)++;			
-				}
-				
-				(*index_grade) = (*index_grade) + 10;
-				if(
-					*index_grade >= 30
-				){
-					*index_grade = (*index_grade % 30) + 1;
-				}
-			}
-		}
-		
-		frase[*index_resultado] = '\0';
-		(*resultado).array = frase;
-		(*resultado).len = *index_resultado;		
-		
-		// Como ela se tornou inutil
-		free((*string_grade).array);
-		free(string_grade);
-		free(index_resultado);
-		free(index_grade);
-		free(index_indicador);
-		return resultado;
-	}
+	// ENTRADA TESTE -> INFATQPCPENCERRADO
 	
 	// Fazendo dessa forma 'linear' poupamos muito mais.
 	int GRADE[30] = {
@@ -190,13 +54,13 @@ String* gradiando(
 	char *ELEMENTO_DO_VAZIO = (char*)calloc(1, sizeof(char));
 	*ELEMENTO_DO_VAZIO = '+';
 	
-	String *string_grade = colocando_na_grade(
+	String *string_grade = colocando_entrada_na_grade(
 		GRADE,
 		entrada,
 		ELEMENTO_DO_VAZIO
 	);  // Vamos limpar esse ponteiro na função seguinte.
 	
-	String *resultado = criando_string_final(
+	String *resultado = criando_string_criptografada(
 		string_grade,  // Vamos limpar isso nessa função.
 		indicadores_de_processo,
 		ELEMENTO_DO_VAZIO
@@ -204,4 +68,278 @@ String* gradiando(
 	
 	return resultado;
 }
+
+/////////////////////// Implementação das Funções de Cripto ///////////////////////////////
+
+String* colocando_entrada_na_grade(
+	int *GRADE_EMBARALHADORA,
+	String *entrada_usuario,
+	char *ELEMENTO_DO_VAZIO
+){
+	/*
+	Descrição:
+		Função responsável por inserir a string dada pelo usuário
+		dentro da grade embaralhadora.
+	
+	Parâmetros:
+		Autoexplicativos.
+	
+	Retorno:
+		Nova String Bialocada.
+	*/
+	
+	char *frase_embaralhada_pela_grade = (char*) calloc(1, sizeof(char));
+	int *index_para_grade_embaralhadora = (int*) calloc(1, sizeof(char));
+	
+	// ENTRADA TESTE -> INFATQPCPENCERRADO
+	// SAÍDA TESTE -> I+NFA+TQPC+P+E+N+C+ER+R+ADO
+	
+	int *index_para_entrada = (int*) calloc(1, sizeof(int));
+	while(
+		// Vamos percorrer a string de entrada até seu final.
+		*index_para_entrada != (*entrada_usuario).len
+	){
+		
+		if(
+			GRADE_EMBARALHADORA[
+				/*
+				Garantimos que os valores possíveis a serem acessados
+				estão os índices: 0, 1, ..., 29.
+				*/
+				*index_para_grade_embaralhadora % 30  // É este valor pela quantidade limite de valores embaralhadores.
+			]
+		){
+			/*
+			Caso seja aceito, devemos colocar um caractere da entrada
+			frase embaralhada.
+			*/
+			
+			frase_embaralhada_pela_grade[
+			
+				*index_para_grade_embaralhadora
+				
+			] = (*entrada_usuario).array[
+			
+				*index_para_entrada
+				
+			];
+			
+			(*index_para_entrada)++;	
+		}else{
+			/*
+			Caso negado, devemos preencher com o vazio.
+			*/
+			
+			frase_embaralhada_pela_grade[
+			
+				*index_para_grade_embaralhadora
+				
+			] = *ELEMENTO_DO_VAZIO;
+		}
+		
+		// Como colocamos algo dentro da frase embaralhada
+		(*index_para_grade_embaralhadora)++;
+		
+		// Alocamos mais
+		frase_embaralhada_pela_grade = (char*) realloc(
+			frase_embaralhada_pela_grade,
+			(*index_para_grade_embaralhadora + 1) * sizeof(char)
+		);
+	}
+	free(index_para_entrada);
+	
+	
+	// Terminador Nulo
+	frase_embaralhada_pela_grade[
+			
+		*index_para_grade_embaralhadora
+		
+	] = '\0';
+	
+	String *string_embaralhada_pela_grade = (String*) calloc(1, sizeof(String));
+	(*string_embaralhada_pela_grade).array = frase_embaralhada_pela_grade;
+	(*string_embaralhada_pela_grade).len = *index_para_grade_embaralhadora;
+	
+	// printf("\nVejo embaralhado: %s\n", frase_embaralhada_pela_grade);
+		
+	free(index_para_grade_embaralhadora);
+	return string_embaralhada_pela_grade;
+}
+
+
+int verificando_se_estamos_em_posicao_de(
+	int *index_de_indicadores,
+	int *indicadores,
+	int *index_da_frase_final
+){
+	/*
+	Descrição:
+		Função responsável por verificar se a posição de
+		um indicador foi atingida.
+	
+	Parâmetros:
+		int *index_de_indicadores:
+			Ponteiro para fazermos as devidas verificações aqui,
+			sem a necessidade de ficar chamando dentro do loop.
+			Temos a garantia que na entrada sempre valerá 0.
+	
+	Retorno:
+		0 - se não estivermos em um local apropriado.
+		A - Caract indicador correspondente.
+	*/
+	
+	while(
+		*index_de_indicadores <= 3
+	){
+		if(
+			*index_da_frase_final == (
+				indicadores[
+					// Posição no Grupo G.
+					*index_de_indicadores + 1
+				] + (
+					// Há G - 1 grupos completos anteriormente.
+					indicadores[
+						*index_de_indicadores + 2
+					] - 1
+				) * 5 - 1
+			)
+		){
+			// Estamos em posição de indicador.
+			return indicadores[*index_de_indicadores];
+		}
+		
+		*index_de_indicadores = *index_de_indicadores + 3;
+	}
+	
+	return 0;  // Não estamos em posição de indicadores.
+}
+
+
+String* criando_string_criptografada(
+	String *entrada_embaralhada_pela_grade,
+	int *indicadores,
+	char *ELEMENTO_DO_VAZIO
+){
+	/*
+	Descrição:
+		Função responsável por, a partir da string
+		embaralhada pela grade, gerar a string resultado.
+		
+		A qual é obtida a partir da leitura da string em-
+		baralhadora por meio de suas colunas.
+	
+	Parâmetros:
+		Autoexplicativos.
+	
+	Retorno:
+		String Bialocada representante do final da criptografia.
+	*/
+	
+	char *frase_final_cripto = (char*) calloc(1, sizeof(char));
+	int *index_para_frase_final = (int*) calloc(1, sizeof(int));
+	
+	int *index_para_string_embaralhada = (int*) calloc(1, sizeof(int));
+	int *index_de_indicadores = (int*) calloc(1, sizeof(int));  // Apenas para função de verificação
+	printf("\nIniciando loop de preenchimento.\n");
+	while(
+		/*
+		Ler todos os caracteres que estão embaralhados.
+		*/
+		*index_para_string_embaralhada < (*entrada_embaralhada_pela_grade).len
+	){
+		if(
+			/*
+			Caso seja o local, retornará o caractere indicador correspondente.
+			O qual nunca é zero.
+			*/
+			*index_de_indicadores = verificando_se_estamos_em_posicao_de(
+				index_de_indicadores,
+				indicadores,
+				index_para_frase_final
+			) 
+		){
+			// Vamos colocar os indicadores no local.
+			frase_final_cripto[
+			
+				*index_para_frase_final
+				
+			] = *index_de_indicadores;
+			
+			*index_de_indicadores = 0;  // Setamos de volta para zero.
+			(*index_para_frase_final)++;
+			
+			printf("\nColoquei indicador no indice %d.", *index_para_frase_final);
+			
+			// Alocamos mais
+			frase_final_cripto = (char*) realloc(
+				frase_final_cripto,
+				(*index_para_frase_final + 1) * sizeof(char)
+			);
+		}
+		else{
+			
+			if(
+				(*entrada_embaralhada_pela_grade).array[
+					*index_para_string_embaralhada
+				] != *ELEMENTO_DO_VAZIO
+			){
+				frase_final_cripto[
+					*index_para_frase_final
+				] = (*entrada_embaralhada_pela_grade).array[
+					*index_para_string_embaralhada
+				];
+				
+				(*index_para_frase_final)++;
+				
+				printf("\nColocando Caract: %c.", (*entrada_embaralhada_pela_grade).array[
+					*index_para_string_embaralhada
+				]);
+				
+				// Alocamos mais
+				frase_final_cripto = (char*) realloc(
+					frase_final_cripto,
+					(*index_para_frase_final + 1) * sizeof(char)
+				);
+			}
+			
+			// Para mantermos a coluna, avançamos 10 índices.
+			*index_para_string_embaralhada = *index_para_string_embaralhada + 10; 
+			if(
+				*index_para_string_embaralhada >= (*entrada_embaralhada_pela_grade).len
+			){
+				*index_para_string_embaralhada = (
+					*index_para_string_embaralhada % (
+						(
+							// Quantidade de Linhas da Entrada Embaralhada.
+							(*entrada_embaralhada_pela_grade).len / 10 + 1
+							
+						) * 10
+					)
+				) + 1;
+			}
+		}
+	}
+	
+	// Terminador Nulo
+	frase_final_cripto[
+		*index_para_frase_final
+	] = '\0';
+	
+	String *resultado = (String*) calloc(1, sizeof(String));
+	(*resultado).array = frase_final_cripto;
+	(*resultado).len = *index_para_frase_final;
+	
+	
+	// Como não precisamos mais da embaralhada
+	free((*entrada_embaralhada_pela_grade).array);
+	free(entrada_embaralhada_pela_grade);
+	
+	free(index_para_string_embaralhada);
+	free(index_de_indicadores);
+	free(index_para_frase_final);
+	
+	return resultado;
+}
+
+
 
