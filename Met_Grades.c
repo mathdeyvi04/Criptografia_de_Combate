@@ -18,6 +18,12 @@ int verificando_se_estamos_em_posicao_de(
 	int *index_da_frase_final
 );
 
+
+int avancando_colunas(
+	int *index_frase_embaralhada
+);
+
+
 String* criando_string_criptografada(
 	String *entrada_embaralhada_pela_grade,
 	int *indicadores,
@@ -215,6 +221,67 @@ int verificando_se_estamos_em_posicao_de(
 }
 
 
+int avancando_colunas(
+	int *index_frase_embaralhada
+){
+	/*
+	Descrição:
+		Função responsável por aplicar a lógica de avanço
+		do index para vermos as colunas da string embaralhada
+		da forma correta.
+	
+	Parãmetros:
+		Autoexplicativos.
+	
+	Retorno:
+		Ponteiro para index setado para novo local.
+	*/
+	
+	// Avançamos para a próxima linha.
+	*index_frase_embaralhada = *index_frase_embaralhada + 10;
+	
+	if (
+		(
+		
+			// Obter índice que estamos.
+			*index_frase_embaralhada
+			
+		) >= 30 * ( 1 + 
+			/*
+			 Obter informação de que grupo estamos.
+			 0...29 -> 1° g
+			 30...59 -> 2° g
+			*/
+			(*index_frase_embaralhada - 10) / 30
+			
+		)
+	){
+		/*
+		Devemos ir para a próxima coluna.
+		Note que essa divisão por 30 é importante, pois como são
+		ambos inteiros, o resultado sempre também será.
+		
+		Ou seja, 29 / 30 = 0, por exemplo.
+		*/
+		*index_frase_embaralhada = 1 + (
+			*index_frase_embaralhada % (30 * (  1 + (*index_frase_embaralhada - 10) / 30))
+		) + 30 * ((*index_frase_embaralhada - 10) / 30);
+		
+		/*
+		Existe a chance de estarmos em uma coluna que não existe
+		fato que indica que devemos ir ao prox grupo.
+		*/
+		if(
+			*index_frase_embaralhada == (10 + 30 * ((*index_frase_embaralhada - 10) / 30))
+		){
+			*index_frase_embaralhada = *index_frase_embaralhada + 20;
+		}
+	}
+	
+	return 0;
+}
+
+
 String* criando_string_criptografada(
 	String *entrada_embaralhada_pela_grade,
 	int *indicadores,
@@ -291,10 +358,6 @@ String* criando_string_criptografada(
 				
 				(*index_para_frase_final)++;
 				
-				printf("\nColocando Caract: %c.", (*entrada_embaralhada_pela_grade).array[
-					*index_para_string_embaralhada
-				]);
-				
 				// Alocamos mais
 				frase_final_cripto = (char*) realloc(
 					frase_final_cripto,
@@ -302,21 +365,10 @@ String* criando_string_criptografada(
 				);
 			}
 			
-			// Para mantermos a coluna, avançamos 10 índices.
-			*index_para_string_embaralhada = *index_para_string_embaralhada + 10; 
-			if(
-				*index_para_string_embaralhada >= (*entrada_embaralhada_pela_grade).len
-			){
-				*index_para_string_embaralhada = (
-					*index_para_string_embaralhada % (
-						(
-							// Quantidade de Linhas da Entrada Embaralhada.
-							(*entrada_embaralhada_pela_grade).len / 10 + 1
-							
-						) * 10
-					)
-				) + 1;
-			}
+			/*
+			Lógica insana para avançarmos as colunas da maneira correta.
+			*/
+			avancando_colunas(index_para_string_embaralhada);
 		}
 	}
 	
