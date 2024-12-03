@@ -5,7 +5,7 @@
 
 // Funções de Cripto
 
-String* colocando_entrada_na_grade(
+String* criptando_na_grade(
 	int *GRADE_EMBARALHADORA,
 	String *entrada_usuario,
 	char *ELEMENTO_DO_VAZIO
@@ -30,6 +30,28 @@ String* criando_string_criptografada(
 	char *ELEMENTO_DO_VAZIO
 );
 
+////////////////////////////////////////////////////////////////////////////////
+
+// Funções de Descripto
+
+String* descriptando_na_grade(
+	int *GRADE,
+	String *entrada_usuario,
+	int *indicadores,
+	char *ELEMENTO_DO_VAZIO
+);
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
 
 // Função Principal
 String* gradiando(
@@ -49,8 +71,6 @@ String* gradiando(
 		String cripto ou decriptografada.
 	*/
 	
-	// ENTRADA TESTE -> INFATQPCPENCERRADO
-	
 	// Fazendo dessa forma 'linear' poupamos muito mais.
 	int GRADE[30] = {
 		1, 0, 1, 1, 1, 0, 1, 1, 1, 1,
@@ -60,24 +80,135 @@ String* gradiando(
 	char *ELEMENTO_DO_VAZIO = (char*)calloc(1, sizeof(char));
 	*ELEMENTO_DO_VAZIO = '+';
 	
-	String *string_grade = colocando_entrada_na_grade(
+	if(
+		// Se for cripto
+		// INFATQPCPENCERRADOQUATORZEZEROZEROPTXW
+		cripto_decripto == 1
+	){
+		String *string_embaralhada_na_grade = criptando_na_grade(
+			GRADE,
+			entrada,
+			ELEMENTO_DO_VAZIO
+		);  // Vamos limpar esse ponteiro na função seguinte.
+		
+		String *resultado = criando_string_criptografada(
+			string_embaralhada_na_grade,  // Vamos limpar isso nessa função.
+			indicadores_de_processo,
+			ELEMENTO_DO_VAZIO
+		);
+		
+		return resultado;
+	}
+	
+	// Então é descripto
+	// IRPNPRFEAANDTOQCPQCEUREAOTROPOTRXZZREWZE
+	// IRPNP RFEAA NDTOQ CPQCE UREAO TROPO TRXZZ REWZE
+	
+	String *string_desembaralhada_na_grade = descriptando_na_grade(
 		GRADE,
 		entrada,
-		ELEMENTO_DO_VAZIO
-	);  // Vamos limpar esse ponteiro na função seguinte.
-	
-	String *resultado = criando_string_criptografada(
-		string_grade,  // Vamos limpar isso nessa função.
 		indicadores_de_processo,
 		ELEMENTO_DO_VAZIO
 	);
 	
+	
+	return string_desembaralhada_na_grade;
+}
+
+
+/////////////////////// Implementação das Funções de Descripto  ///////////////////////////
+
+String* descriptando_na_grade(
+	int *GRADE_EMBARALHADORA,
+	String *entrada_usuario,
+	int *indicadores,
+	char *ELEMENTO_DO_VAZIO
+){
+	/*
+	Descrição:
+		Função responsável por colocar a string teoricamente
+		criptografada na grade.
+		
+		Para que seja possível a descripto.
+		
+	Parâmetros:
+		Autoexplicativos.
+	
+	Retorno:
+		Ponteiro para string bialocada.
+	*/
+	
+	char *frase_desembaralhada_na_grade = (char*) calloc(1, sizeof(char));
+	int *index_para_frase_desembaralhada_na_grade = (int*) calloc(1, sizeof(int));
+	
+	int *index_para_frase_cripto = (int*) calloc(1, sizeof(int));
+	int *index_de_indicadores = (int*) calloc(1, sizeof(int));
+	while(
+		*index_para_frase_cripto != (*entrada_usuario).len
+	){
+		
+		if(
+			/*
+			Em primeira mão, não precisamos dos indicadores.
+			Mas precisamos saber onde eles estão para ignorarmos.
+			*/
+			*index_de_indicadores = verificando_se_estamos_em_posicao_de(
+				index_de_indicadores,
+				indicadores,
+				index_para_frase_cripto
+			)
+		){
+			
+			*index_de_indicadores = 0;
+			(*index_para_frase_cripto)++;
+		}
+		
+		/*
+		Siga o seguinte algoritmo:
+		
+		-> Loop verificando se estamos em um local válido:
+			* Caso sim, saímos do loop.
+			* Caso não, colocamos vazio e _AVANÇAMOS O INDEX_ e _ALOCAMOS_ corretamente.
+			
+		-> Como temos a certeza que estamos em um local válido:
+			* Adicionamos o caractere da string_criptografada.
+			* Em seguida, _AVANÇAMOS O INDEX_ e _ALOCAMOS_ mais espaço.
+		
+		*/
+	}
+	
+	frase_desembaralhada_na_grade[
+		*index_para_frase_desembaralhada_na_grade
+	] = '\0';
+	
+	printf("\nA string está como %s.", frase_desembaralhada_na_grade);
+	
+	String *resultado = (String*) calloc(1, sizeof(String));
+	(*resultado).array = frase_desembaralhada_na_grade;
+	(*resultado).len = *index_para_frase_desembaralhada_na_grade;
+	
+		
+	free(index_para_frase_desembaralhada_na_grade);
+	free(index_para_frase_cripto);
+	free(index_de_indicadores);
+	
 	return resultado;
 }
 
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////// Implementação das Funções de Cripto ///////////////////////////////
 
-String* colocando_entrada_na_grade(
+String* criptando_na_grade(
 	int *GRADE_EMBARALHADORA,
 	String *entrada_usuario,
 	char *ELEMENTO_DO_VAZIO
@@ -239,7 +370,7 @@ int avancando_colunas(
 	
 	// Avançamos para a próxima linha.
 	*index_frase_embaralhada = *index_frase_embaralhada + 10;
-	
+
 	if (
 		(
 		
@@ -307,7 +438,6 @@ String* criando_string_criptografada(
 	
 	int *index_para_string_embaralhada = (int*) calloc(1, sizeof(int));
 	int *index_de_indicadores = (int*) calloc(1, sizeof(int));  // Apenas para função de verificação
-	printf("\nIniciando loop de preenchimento.\n");
 	while(
 		/*
 		Ler todos os caracteres que estão embaralhados.
@@ -335,7 +465,7 @@ String* criando_string_criptografada(
 			*index_de_indicadores = 0;  // Setamos de volta para zero.
 			(*index_para_frase_final)++;
 			
-			printf("\nColoquei indicador no indice %d.", *index_para_frase_final);
+			// printf("\nColoquei indicador no indice %d.", *index_para_frase_final);
 			
 			// Alocamos mais
 			frase_final_cripto = (char*) realloc(
@@ -392,6 +522,4 @@ String* criando_string_criptografada(
 	
 	return resultado;
 }
-
-
 
