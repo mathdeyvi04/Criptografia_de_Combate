@@ -1,8 +1,6 @@
 #include "Met_Grades.h"
 
 
-
-
 // Funções de Cripto
 
 String* criptando_na_grade(
@@ -30,7 +28,9 @@ String* criando_string_criptografada(
 	char *ELEMENTO_DO_VAZIO
 );
 
+
 ////////////////////////////////////////////////////////////////////////////////
+
 
 // Funções de Descripto
 
@@ -41,20 +41,15 @@ String** descriptando_na_grade(
 	char *ELEMENTO_DO_VAZIO
 );
 
+
 String *criando_strings_descriptografada(
 	String** vetor_de_colunas_da_string_na_grade,
 	char *ELEMENTO_DO_VAZIO
 );
 
 
-
-
-
-
-
-
-
 //////////////////////////////////////////////////////////////////////////////
+
 
 // Função Principal
 String* gradiando(
@@ -85,6 +80,7 @@ String* gradiando(
 	
 	if(
 		// Se for cripto
+		// Teste:
 		// INFATQPCPENCERRADOQUATORZEZEROZEROPTXW
 		cripto_decripto == 1
 	){
@@ -103,9 +99,8 @@ String* gradiando(
 		return resultado;
 	}
 	
-	// Então é descripto
+	// Então é descripto, teste:
 	// IRPNPRFEAANDTOQCPQCEUREAOTROPOTRXZZREWZE
-	// IRPNP RFEAA NDTOQ CPQCE UREAO TROPO TRXZZ REWZE
 	
 	String **vetor_de_colunas_da_string_na_grade = descriptando_na_grade(
 		GRADE,
@@ -124,6 +119,7 @@ String* gradiando(
 
 
 /////////////////////// Implementação das Funções de Descripto  ///////////////////////////
+
 
 String** descriptando_na_grade(
 	int *GRADE_EMBARALHADORA,
@@ -249,18 +245,6 @@ String** descriptando_na_grade(
 		
 		*index_para_substring = 0;
 		
-		
-		printf(
-			"\nVejo a substring: %s, que tem numeração %d°.",
-			(
-				*array_de_substrings[
-					*index_para_array_de_substrings				
-				]
-			).array,
-			*index_para_array_de_substrings
-		);
-		
-		
 		(*index_para_array_de_substrings)++;
 		
 		if (
@@ -335,34 +319,47 @@ String* criando_strings_descriptografada(
 	int *index_para_vetor_de_substrings = (int*) calloc(1, sizeof(int));
 	int *index_para_linha = (int*) calloc(1, sizeof(int));
 	while(
-		(	
-			// Se estamos na última coluna acessível.
-			*index_para_vetor_de_substrings == (*quant_de_substrings - 1)
-		)  && (
-			// Se estamos na linha inacessível.
-			*index_para_linha == (
-				*vetor_de_colunas_da_string_na_grade[
-					*index_para_vetor_de_substrings
-				]
-			).len
+		!(
+			(	
+				// Se estamos na última coluna acessível.
+				*index_para_vetor_de_substrings == (*quant_de_substrings - 1)
+			)  && (
+				// Se estamos na linha inacessível.
+				*index_para_linha == (
+					*vetor_de_colunas_da_string_na_grade[
+						*index_para_vetor_de_substrings
+					]
+				).len
+			)
 		)
 	){
 		
-		/*
-		printf(
-			"\nVejo: %c na coluna %d e linha %d.",
+		if(
 			(
 				*vetor_de_colunas_da_string_na_grade[
 					*index_para_vetor_de_substrings
 				]
 			).array[
 				*index_para_linha
-			],
-			*index_para_vetor_de_substrings,
-			*index_para_linha
-		);
-		*/
-		
+			] != *ELEMENTO_DO_VAZIO
+		){
+			frase[
+				*index_para_frase
+			] = (
+				*vetor_de_colunas_da_string_na_grade[
+					*index_para_vetor_de_substrings
+				]
+			).array[
+				*index_para_linha
+			];
+			
+			(*index_para_frase)++;
+			// Alocamos mais.
+			frase = (char*) realloc(
+				frase,
+				(*index_para_frase + 1) * sizeof(char)
+			);
+		}
 		
 		(*index_para_vetor_de_substrings)++;
 		if(
@@ -399,12 +396,17 @@ String* criando_strings_descriptografada(
 		}
 
 	}
+	frase[
+		*index_para_frase
+	] = '\0';
 	
+	String *resultado = (String*) calloc(1, sizeof(String));
+	(*resultado).array = frase;
+	(*resultado).len = *index_para_frase;
 	
 	free(index_para_vetor_de_substrings);
 	free(index_para_linha);
 	free(index_para_frase);
-	free(frase);
 	
 	for(
 		int i = 0;
@@ -432,17 +434,12 @@ String* criando_strings_descriptografada(
 	free(vetor_de_colunas_da_string_na_grade);
 	free(quant_de_substrings);
 	
-	return criar_nulo();
+	return resultado;
 }
 
 
-
-
-
-
-
-
 /////////////////////// Implementação das Funções de Cripto ///////////////////////////////
+
 
 String* criptando_na_grade(
 	int *GRADE_EMBARALHADORA,
@@ -758,4 +755,5 @@ String* criando_string_criptografada(
 	
 	return resultado;
 }
+
 

@@ -69,7 +69,7 @@ LeftChar=1
 [Editor_13]
 CursorCol=4
 CursorRow=100
-TopLine=76
+TopLine=35
 LeftChar=1
 [Editor_14]
 CursorCol=19
@@ -92,9 +92,9 @@ CursorRow=4
 TopLine=1
 LeftChar=1
 [Editor_17]
-CursorCol=33
-CursorRow=438
-TopLine=148
+CursorCol=1
+CursorRow=2
+TopLine=1
 LeftChar=1
 [Editor_19]
 CursorCol=29
