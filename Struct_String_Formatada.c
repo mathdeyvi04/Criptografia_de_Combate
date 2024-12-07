@@ -331,3 +331,38 @@ int verificando_letras_mortas(
 }
 
 
+String* criar_nulo(){
+	/*
+	Descrição:
+		Função responsável por facilitar o processo de criação
+		de strings descartáveis.
+	
+	Parâmetros:
+		Nenhum.
+	
+	Retorno:
+		Ponteiro para string bialocada.
+	*/
+	
+	String *nulo = (String*) calloc(1, sizeof(String));
+	(*nulo).array = NULL;
+	
+	return nulo;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

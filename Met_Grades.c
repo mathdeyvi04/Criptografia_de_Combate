@@ -34,14 +34,17 @@ String* criando_string_criptografada(
 
 // Funções de Descripto
 
-String* descriptando_na_grade(
+String** descriptando_na_grade(
 	int *GRADE,
 	String *entrada_usuario,
 	int *indicadores,
 	char *ELEMENTO_DO_VAZIO
 );
 
-
+String *criando_strings_descriptografada(
+	String** vetor_de_colunas_da_string_na_grade,
+	char *ELEMENTO_DO_VAZIO
+);
 
 
 
@@ -104,21 +107,25 @@ String* gradiando(
 	// IRPNPRFEAANDTOQCPQCEUREAOTROPOTRXZZREWZE
 	// IRPNP RFEAA NDTOQ CPQCE UREAO TROPO TRXZZ REWZE
 	
-	String *string_desembaralhada_na_grade = descriptando_na_grade(
+	String **vetor_de_colunas_da_string_na_grade = descriptando_na_grade(
 		GRADE,
 		entrada,
 		indicadores_de_processo,
 		ELEMENTO_DO_VAZIO
 	);
 	
+	String *resultado = criando_strings_descriptografada(
+		vetor_de_colunas_da_string_na_grade,
+		ELEMENTO_DO_VAZIO
+	);
 	
-	return string_desembaralhada_na_grade;
+	return resultado;
 }
 
 
 /////////////////////// Implementação das Funções de Descripto  ///////////////////////////
 
-String* descriptando_na_grade(
+String** descriptando_na_grade(
 	int *GRADE_EMBARALHADORA,
 	String *entrada_usuario,
 	int *indicadores,
@@ -127,77 +134,306 @@ String* descriptando_na_grade(
 	/*
 	Descrição:
 		Função responsável por colocar a string teoricamente
-		criptografada na grade.
+		criptografada na grade.	Para que seja possível a descripto.
 		
-		Para que seja possível a descripto.
+		Preste bem atenção no código, pois o algoritmo é complexo.
 		
 	Parâmetros:
 		Autoexplicativos.
 	
 	Retorno:
-		Ponteiro para string bialocada.
+		Ponteiro para vetor que conterá as substrings que representam
+		as colunas da string na grade.
+		Será trialocado.
 	*/
 	
-	char *frase_desembaralhada_na_grade = (char*) calloc(1, sizeof(char));
-	int *index_para_frase_desembaralhada_na_grade = (int*) calloc(1, sizeof(int));
+	/*
+	Criar um array de strings que terão sempre tamanho 4.
+	Sendo o último, terminador nulo, para evitar erros.
 	
+	Cada substring terá a responsabilidade de representar as colunas
+	da string na grade.
+	*/
+	String **array_de_substrings = (String**) calloc(1, sizeof(String*));
+	int *index_para_array_de_substrings = (int*) calloc(1, sizeof(int));
+	int *index_para_substring = (int*) calloc(1, sizeof(int));
+	
+	// Valores para iterarmos.	
 	int *index_para_frase_cripto = (int*) calloc(1, sizeof(int));
+	int *index_para_grade = (int*) calloc(1, sizeof(int));
 	int *index_de_indicadores = (int*) calloc(1, sizeof(int));
+	
 	while(
 		*index_para_frase_cripto != (*entrada_usuario).len
 	){
 		
-		if(
-			/*
-			Em primeira mão, não precisamos dos indicadores.
-			Mas precisamos saber onde eles estão para ignorarmos.
-			*/
-			*index_de_indicadores = verificando_se_estamos_em_posicao_de(
-				index_de_indicadores,
-				indicadores,
-				index_para_frase_cripto
-			)
+		// Alocamos o necessário para cada substring.
+		array_de_substrings[
+			*index_para_array_de_substrings
+		] = (String*) calloc(1, sizeof(String));
+		(
+			*array_de_substrings[
+				*index_para_array_de_substrings				
+			]
+		).array = (char*) calloc(4, sizeof(char));
+		
+		while(
+			*index_para_substring != 3  && *index_para_frase_cripto != (*entrada_usuario).len
 		){
+			// Verificar se é um local válido.
+			if(
+				GRADE_EMBARALHADORA[
+					*index_para_grade % 30
+				]
+			){
+				
+				// Verificar se é um indicador
+				if(
+					/*
+					Em primeira mão, não precisamos dos indicadores.
+					Mas precisamos saber onde eles estão para os ignorarmos.
+					*/
+					*index_de_indicadores = verificando_se_estamos_em_posicao_de(
+						index_de_indicadores,
+						indicadores,
+						index_para_frase_cripto
+					)
+				){
+					
+					*index_de_indicadores = 0;
+					(*index_para_frase_cripto)++;
+				}
+				
+				(
+					*array_de_substrings[
+						*index_para_array_de_substrings				
+					]
+				).array[
+					*index_para_substring
+				] = (*entrada_usuario).array[
+					*index_para_frase_cripto
+				];
+				
+				(*index_para_frase_cripto)++;
+			}
+			else{
+
+				(
+					*array_de_substrings[
+						*index_para_array_de_substrings				
+					]
+				).array[
+					*index_para_substring
+				] = *ELEMENTO_DO_VAZIO;
+			}
 			
-			*index_de_indicadores = 0;
-			(*index_para_frase_cripto)++;
+			(*index_para_substring)++;
+			avancando_colunas(
+				index_para_grade
+			);
 		}
 		
-		/*
-		Siga o seguinte algoritmo:
+		(
+			*array_de_substrings[
+				*index_para_array_de_substrings				
+			]
+		).array[
+			*index_para_substring
+		] = '\0';
 		
-		-> Loop verificando se estamos em um local válido:
-			* Caso sim, saímos do loop.
-			* Caso não, colocamos vazio e _AVANÇAMOS O INDEX_ e _ALOCAMOS_ corretamente.
-			
-		-> Como temos a certeza que estamos em um local válido:
-			* Adicionamos o caractere da string_criptografada.
-			* Em seguida, _AVANÇAMOS O INDEX_ e _ALOCAMOS_ mais espaço.
+		(
+			*array_de_substrings[
+				*index_para_array_de_substrings				
+			]
+		).len = *index_para_substring;
 		
-		*/
+		*index_para_substring = 0;
+		
+		
+		printf(
+			"\nVejo a substring: %s, que tem numeração %d°.",
+			(
+				*array_de_substrings[
+					*index_para_array_de_substrings				
+				]
+			).array,
+			*index_para_array_de_substrings
+		);
+		
+		
+		(*index_para_array_de_substrings)++;
+		
+		if (
+			/*
+			Esse if é para não alocarmos desnecessariamente mais um slot.
+			*/
+			*index_para_frase_cripto != (*entrada_usuario).len
+		){
+			// Alocamos mais espaço no array para novas substrings.
+			//printf("\nAloquei para termos mais uma coluna.");
+			array_de_substrings = (String**) realloc(
+				array_de_substrings,
+				(*index_para_array_de_substrings + 1) * sizeof(String*)
+			);
+		}
 	}
 	
-	frase_desembaralhada_na_grade[
-		*index_para_frase_desembaralhada_na_grade
-	] = '\0';
+	/*
+	A hora de ser genial.
 	
-	printf("\nA string está como %s.", frase_desembaralhada_na_grade);
+	Como a primeira substring com certeza terá 3 elementos, podemos usar o seu len
+	para guardar outra informação.
 	
-	String *resultado = (String*) calloc(1, sizeof(String));
-	(*resultado).array = frase_desembaralhada_na_grade;
-	(*resultado).len = *index_para_frase_desembaralhada_na_grade;
+	Como a quantidade total de substrings.
+	*/
+	(
+		*array_de_substrings[
+			0			
+		]
+	).len = *index_para_array_de_substrings;
 	
-		
-	free(index_para_frase_desembaralhada_na_grade);
-	free(index_para_frase_cripto);
 	free(index_de_indicadores);
+	free(index_para_array_de_substrings);
+	free(index_para_substring);
+	free(index_para_grade);
+	free(index_para_frase_cripto);
 	
-	return resultado;
+	return array_de_substrings;
 }
 
 
+String* criando_strings_descriptografada(
+	String **vetor_de_colunas_da_string_na_grade,
+	char *ELEMENTO_DO_VAZIO
+){
+	/*
+	Descrição:
+		Função responsável por juntar as colunas da strings cripto
+		na grade e lê-la de forma a termos a string descriptografada.
+	
+	Parâmetros:
+		String **vetor_de_colunas_da_string_na_grade:
+			Vetor de colunas da grade.
+		
+	Retorno:
+		Ponteiro para String descripto.
+	*/
+	
+	// Limpando tudo por enquanto
+	int *quant_de_substrings = (int*) calloc(1, sizeof(int));
+	*quant_de_substrings = (
+		*vetor_de_colunas_da_string_na_grade[
+			0
+		]
+	).len;
+	
+	// IRPNPRFEAANDTOQCPQCEUREAOTROPOTRXZZREWZE
+	
+	char *frase = (char*) calloc(1, sizeof(char));
+	int *index_para_frase = (int*) calloc(1, sizeof(int));
+	
+	int *index_para_vetor_de_substrings = (int*) calloc(1, sizeof(int));
+	int *index_para_linha = (int*) calloc(1, sizeof(int));
+	while(
+		(	
+			// Se estamos na última coluna acessível.
+			*index_para_vetor_de_substrings == (*quant_de_substrings - 1)
+		)  && (
+			// Se estamos na linha inacessível.
+			*index_para_linha == (
+				*vetor_de_colunas_da_string_na_grade[
+					*index_para_vetor_de_substrings
+				]
+			).len
+		)
+	){
+		
+		/*
+		printf(
+			"\nVejo: %c na coluna %d e linha %d.",
+			(
+				*vetor_de_colunas_da_string_na_grade[
+					*index_para_vetor_de_substrings
+				]
+			).array[
+				*index_para_linha
+			],
+			*index_para_vetor_de_substrings,
+			*index_para_linha
+		);
+		*/
+		
+		
+		(*index_para_vetor_de_substrings)++;
+		if(
+			/*
+			Algoritmo para:
+				- Verificação se estamos na última coluna do grupo.
+			*/
+			*index_para_vetor_de_substrings % 10 == 0
+		){
+			
+			if(
+				// Estaremos na 3° linha
+				*index_para_linha == 2
+			){
 
+				*index_para_linha = 0;
+			}
+			else{
+				(*index_para_linha)++;
+				*index_para_vetor_de_substrings = *index_para_vetor_de_substrings - 10;
+			}
+			
+		}
+		
+		if(
+			*index_para_vetor_de_substrings == *quant_de_substrings
+		){
+			/*
+			Estamos na coluna que é INACESSÍVEL.
+			*/
+			
+			*index_para_vetor_de_substrings = (*index_para_vetor_de_substrings / 10) * 10;
+			(*index_para_linha)++;
+		}
 
+	}
+	
+	
+	free(index_para_vetor_de_substrings);
+	free(index_para_linha);
+	free(index_para_frase);
+	free(frase);
+	
+	for(
+		int i = 0;
+		i < *quant_de_substrings;
+		i++ 
+	){	
+		// Limpamos os array de caracteres dentro de cada slot.
+		free(
+			(
+				*vetor_de_colunas_da_string_na_grade[
+					i			
+				]
+			).array
+		);
+		
+		// Limpamos dentro de cada slot.
+		free(
+			vetor_de_colunas_da_string_na_grade[
+				i
+			]
+		);
+		// printf("\nLimpei a %d°.", i);
+	}
+	// Limpamos o vetor de slots.
+	free(vetor_de_colunas_da_string_na_grade);
+	free(quant_de_substrings);
+	
+	return criar_nulo();
+}
 
 
 
