@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o Struct_String_Formatada.o Interface.o Funcoes_Basicas_Front.o Variaveis_Importacoes.o Interface_De_Entrada.o Interface_De_Decisao.o Interface_De_Apresentacao.o Met_Inversao.o Met_Grades.o
-LINKOBJ  = main.o Struct_String_Formatada.o Interface.o Funcoes_Basicas_Front.o Variaveis_Importacoes.o Interface_De_Entrada.o Interface_De_Decisao.o Interface_De_Apresentacao.o Met_Inversao.o Met_Grades.o
+OBJ      = main.o Struct_String_Formatada.o Interface.o Funcoes_Basicas_Front.o Variaveis_Importacoes.o Interface_De_Entrada.o Interface_De_Decisao.o Interface_De_Apresentacao.o Met_Inversao.o Met_Grades.o Met_Chave_Simples.o
+LINKOBJ  = main.o Struct_String_Formatada.o Interface.o Funcoes_Basicas_Front.o Variaveis_Importacoes.o Interface_De_Entrada.o Interface_De_Decisao.o Interface_De_Apresentacao.o Met_Inversao.o Met_Grades.o Met_Chave_Simples.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -53,3 +53,6 @@ Met_Inversao.o: Met_Inversao.c
 
 Met_Grades.o: Met_Grades.c
 	$(CC) -c Met_Grades.c -o Met_Grades.o $(CFLAGS)
+
+Met_Chave_Simples.o: Met_Chave_Simples.c
+	$(CC) -c Met_Chave_Simples.c -o Met_Chave_Simples.o $(CFLAGS)

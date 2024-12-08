@@ -69,9 +69,10 @@ int janela_de_apresentacao(
 		Apresentação do resultado da cripto ou decripto da
 		entrada usando o método.
 	*/
-	String* (*vetor_de_metodos_possiveis[2])(int, String*, int*) = {
+	String* (*vetor_de_metodos_possiveis[3])(int, String*, int*) = {
 		inversao,
-		gradiando
+		gradiando,
+		chave_simplando
 	};
 	
 	// Vamos pegar indicadores de processo

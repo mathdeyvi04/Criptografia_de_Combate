@@ -1,5 +1,12 @@
 #include "Met_Grades.h"
 
+/*
+
+ERRO CRÍTICO DESCRITO EM descriptando_na_grade.
+
+*/
+
+
 
 // Funções de Cripto
 
@@ -23,6 +30,7 @@ int avancando_colunas(
 
 
 String* criando_string_criptografada(
+	int quantidade_de_caracteres_que_deve_haver_no_final,
 	String *entrada_embaralhada_pela_grade,
 	int *indicadores,
 	char *ELEMENTO_DO_VAZIO
@@ -91,6 +99,7 @@ String* gradiando(
 		);  // Vamos limpar esse ponteiro na função seguinte.
 		
 		String *resultado = criando_string_criptografada(
+			(*entrada).len + 2,  // 2 indicadores.
 			string_embaralhada_na_grade,  // Vamos limpar isso nessa função.
 			indicadores_de_processo,
 			ELEMENTO_DO_VAZIO
@@ -134,6 +143,17 @@ String** descriptando_na_grade(
 		
 		Preste bem atenção no código, pois o algoritmo é complexo.
 		
+		Estamos fadados a um erro grosseiro com relação ao preenchimento
+		da grade: 
+		
+		Suponha uma string de caracteres não múltipla de 60.
+		Ao criptografarmos, na segunda grade, haverá colunas que não terão
+		a terceira linha completa.
+		
+		Suponha agora que vamos descriptografar, ao colocarmos na grade.
+		Como deve saber que não devemos preencher a 3° linha e simplesmente 
+		ir à próxima coluna? Impossível?
+		
 	Parâmetros:
 		Autoexplicativos.
 	
@@ -159,6 +179,7 @@ String** descriptando_na_grade(
 	int *index_para_grade = (int*) calloc(1, sizeof(int));
 	int *index_de_indicadores = (int*) calloc(1, sizeof(int));
 	
+	// ERHUOASEOSAEUGMDRAFTOEXEMATMAOBXUCX
 	while(
 		*index_para_frase_cripto != (*entrada_usuario).len
 	){
@@ -236,6 +257,17 @@ String** descriptando_na_grade(
 		).array[
 			*index_para_substring
 		] = '\0';
+		
+		/*
+		printf(
+			"\nAcabo de construir a substring: %s",
+			(
+				*array_de_substrings[
+					*index_para_array_de_substrings				
+				]
+			).array
+		);
+		*/
 		
 		(
 			*array_de_substrings[
@@ -455,7 +487,14 @@ String* criptando_na_grade(
 		Autoexplicativos.
 	
 	Retorno:
-		Nova String Bialocada.
+		Uma Nova String Bialocada, de forma que é como uma cobra
+		que forma um S dentro de cada grade.
+		
+		Por exemplo:
+			G1 -> tendo 30 caracteres, de forma linear.
+			G2 -> Outros 30 caracteres, seguindo a lógica.
+			...
+		
 	*/
 	
 	char *frase_embaralhada_pela_grade = (char*) calloc(1, sizeof(char));
@@ -647,6 +686,7 @@ int avancando_colunas(
 
 
 String* criando_string_criptografada(
+	int quantidade_de_caracteres_que_deve_haver_no_final,
 	String *entrada_embaralhada_pela_grade,
 	int *indicadores,
 	char *ELEMENTO_DO_VAZIO
@@ -669,14 +709,28 @@ String* criando_string_criptografada(
 	char *frase_final_cripto = (char*) calloc(1, sizeof(char));
 	int *index_para_frase_final = (int*) calloc(1, sizeof(int));
 	
+	// EuSouMathEAdoroSegFemAmoBuceta
+	
 	int *index_para_string_embaralhada = (int*) calloc(1, sizeof(int));
 	int *index_de_indicadores = (int*) calloc(1, sizeof(int));  // Apenas para função de verificação
 	while(
 		/*
 		Ler todos os caracteres que estão embaralhados.
 		*/
-		*index_para_string_embaralhada < (*entrada_embaralhada_pela_grade).len
+		*index_para_frase_final < quantidade_de_caracteres_que_deve_haver_no_final
 	){
+		
+		while(
+			/*
+			Caso tenhamos chegado em uma posição inválida.
+			*/
+			*index_para_string_embaralhada >= (*entrada_embaralhada_pela_grade).len
+		){
+			avancando_colunas(index_para_string_embaralhada);
+		}
+		
+		
+		
 		if(
 			/*
 			Caso seja o local, retornará o caractere indicador correspondente.
@@ -705,6 +759,14 @@ String* criando_string_criptografada(
 				frase_final_cripto,
 				(*index_para_frase_final + 1) * sizeof(char)
 			);
+			
+			
+			printf(
+				"\nColoco indicador no local %d",
+				*index_para_frase_final
+			);
+			
+			
 		}
 		else{
 			
@@ -726,12 +788,26 @@ String* criando_string_criptografada(
 					frase_final_cripto,
 					(*index_para_frase_final + 1) * sizeof(char)
 				);
+				
+				
+				printf(
+					"\nPara index %d, coloco o caractere: %c.",
+					*index_para_frase_final,
+					(*entrada_embaralhada_pela_grade).array[
+						*index_para_string_embaralhada
+					]
+				);
+				
 			}
 			
 			/*
 			Lógica insana para avançarmos as colunas da maneira correta.
 			*/
 			avancando_colunas(index_para_string_embaralhada);
+			printf(
+				"\nEstou indo para local: %d.",
+				*index_para_string_embaralhada
+			);
 		}
 	}
 	

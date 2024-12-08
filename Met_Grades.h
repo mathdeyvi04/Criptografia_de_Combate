@@ -1,7 +1,7 @@
 #ifndef MET_GRADES_H
 #define MET_GRADES_H
 
-#include "Struct_String_Formatada.h"
+#include "Met_Chave_Simples.h"
 
 String* gradiando(int, String*,int*);
 
