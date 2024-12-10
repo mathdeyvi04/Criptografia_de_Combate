@@ -22,6 +22,8 @@ int* verificador_primario();
 
 int verificando_letras_mortas(String*);
 
+int verificando_presenca(int*, int*, int, int);
+
 String* criar_nulo();
 
 #endif

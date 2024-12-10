@@ -70,6 +70,47 @@ String* construir_string_dinamica(
 	
 }
 
+
+int verificando_presenca(
+	int *lista_de_numeros,
+	int *temp_para_varrer,
+	int quant_total,
+	int valor_a_ser_verificado
+){
+	/*
+	Descrição:
+		Função responsável por verificar se um número
+		está presente em uma lista de números.
+	
+	Parâmetros:
+		Autoexplicativos.
+	
+	Retorno:
+		1 - Se estiver presente
+		0 - Se não.
+	*/
+	
+	*temp_para_varrer = 0;
+	
+	while(
+		*temp_para_varrer != quant_total
+	){
+		if(
+			lista_de_numeros[
+				*temp_para_varrer
+			] == valor_a_ser_verificado
+		){
+			return 1;
+		}
+		
+		(*temp_para_varrer)++;
+	}
+	
+	return 0;
+	
+}
+
+
 char mudar_para_ascii(
 	char char_entrada
 ){	

@@ -6,56 +6,6 @@ ERRO CRÍTICO DESCRITO EM descriptando_na_grade.
 
 */
 
-
-
-// Funções de Cripto
-
-String* criptando_na_grade(
-	int *GRADE_EMBARALHADORA,
-	String *entrada_usuario,
-	char *ELEMENTO_DO_VAZIO
-);
-
-
-int verificando_se_estamos_em_posicao_de(
-	int *index_de_indicadores,
-	int *indicadores,
-	int *index_da_frase_final
-);
-
-
-int avancando_colunas(
-	int *index_frase_embaralhada
-);
-
-
-String* criando_string_criptografada(
-	int quantidade_de_caracteres_que_deve_haver_no_final,
-	String *entrada_embaralhada_pela_grade,
-	int *indicadores,
-	char *ELEMENTO_DO_VAZIO
-);
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-
-// Funções de Descripto
-
-String** descriptando_na_grade(
-	int *GRADE,
-	String *entrada_usuario,
-	int *indicadores,
-	char *ELEMENTO_DO_VAZIO
-);
-
-
-String *criando_strings_descriptografada(
-	String** vetor_de_colunas_da_string_na_grade,
-	char *ELEMENTO_DO_VAZIO
-);
-
-
 //////////////////////////////////////////////////////////////////////////////
 
 

@@ -18,7 +18,7 @@ int* menu_de_decisao(){
 	printf("0 - Voltar para Menu de Entrada\n");
 	printf("1 - Inversão\n");
 	printf("2 - Grades\n");
-	printf("3 - Quadros");
+	printf("3 - Chave Simples");
 	
 	printf("\nEscolha o método desejado: ");
 	
